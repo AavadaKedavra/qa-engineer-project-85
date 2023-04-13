@@ -1,1 +1,15 @@
-
+---
+- summary: |
+    Успешная авторизация через Github
+  requirement: |
+    При верном вводе логина и пароля от существуюшего аккаунта на Github.com происходит авторизация на codebattle
+  prerequisites: |
+    Открыта страница авторизации. Аккаунт на Github.com зарегистрирован.
+  test-data: |
+    Login = AvadaKedavra Password = password
+  steps:
+    - Нажать 'Sign in with Github'
+    - Ввести тестовые данные
+    - Нажать кнопку "Sign in"
+  expected-result: |
+    Пользователь успешно прошел авторизацию.
