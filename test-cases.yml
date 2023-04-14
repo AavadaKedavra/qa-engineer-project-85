@@ -6,7 +6,8 @@
   prerequisites: |
     Открыта страница авторизации. Аккаунт на Github.com зарегистрирован.
   test-data: |
-    Login = AvadaKedavra Password = password
+    Login = AvadaKedavra
+    Password = password
   steps:
     - Нажать 'Sign in with Github'
     - Ввести тестовые данные
@@ -28,3 +29,83 @@
     - Нажать кнопку "Submit"
   expected-result: |
     Отображается главная страница, в верхней правой части страницы отображается созданный никнейм
+    
+- summary: |
+    Проверка корректного завершения игры при победе с ботом
+  requirement: |
+    Победителем должен являться тот, кто верно решит задачу и затратит на это меньше количество времени
+  prerequisites: |
+    Открыта главная страница https://codebattle.hexlet.io/
+  test-data: |
+    Login = AvadaKedavra
+    Password = password
+    Level = * Time control = 3 min Game type = with a bot Task = rect_area
+    Task language = js;
+    const solution = (width, length) => {
+    return width * length;
+    };
+  steps:
+    - Нажать "TRY SIMPLE BATTLE"
+    - Дописать код соответствующий задаче
+    - Нажать 'check'
+  expected-result: |
+    Игра окончена победой пользователя.
+    
+- summary: |
+    Проверка возможности сдаться в игре с ботом
+  requirement: |
+    Во время игры игрок может сдаться нажав 'Give up'
+  prerequisites: |
+    Пользователь авторизован. Открыта главная страница.
+  test-data: |
+    Login = AvadaKedavra
+    Password = password
+    Level = * Time control = 3 min Game type = with a bot Task = rect_area
+  steps:
+    - Нажать 'Create a game'
+    - Выбрать настройки игры в соответствии с тестовыми данными
+    - Нажать 'Create a Battle'
+    - Нажать 'Give up'
+    - Подтвердить 'Give up'
+  expected-result: |
+    Игра закончена с проигрышем пользователя.
+    
+- summary: |
+    Проверка смены языка программирования во время игры.
+  requirement: |
+    Оба игрока должны иметь возможность менять язык программирования во время решения задачи.
+  prerequisites: |
+    Открыта главная страница https://codebattle.hexlet.io/
+  test-data: |
+    empty
+  steps:
+    - Нажимаем кнопку "TRY SIMPLE BATTLE".
+    - Нажать на меню опций с выбором языков программирвоания.
+    - Выбрать Java
+    - Выбрать Python
+    - Выбрать Php
+    - Выбрать C++
+  expected-result: |
+    В редакторе сменился язык программирования во время игры.
+    
+ - summary: |
+    Проверка настройки параметров игры
+  requirement: |
+    Перед началом баттла игрок может выбрать параметры игры: сложность, выбор оппонента, лимит времени, тип задания
+  prerequisites:
+    Открыта главная страница https://codebattle.hexlet.io/
+    Пользователь авторизован
+  test-data: |
+    Login = AvadaKedavra
+    Password = password
+  steps:
+    - Нажать "Create a game"
+    - В модальном окне выбрать level '*'
+    - Game Type выбрать 'with a bot'
+    - time control выбрать '3 min'
+    - task by выбрать 'react_area'
+    - Нажать 'Create battle'
+  expected-result: |
+    Начался баттл с заданными параметрами игры 
+    
+    
