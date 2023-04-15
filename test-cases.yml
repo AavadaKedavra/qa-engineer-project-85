@@ -116,8 +116,8 @@
     Открыты два окна с приложением на главной странице https://codebattle.hexlet.io/
     В первом окне авторизован пользователь 1; Во втором окне - пользователь 2
   test-data: |
-    Browser = Opera GX LVL 4 (core: 95.0.4635.74)
-    Browser = Версия 1.50.118 Chromium: 112.0.5615.87 (Официальная сборка), (64 бит)
+    Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
+    Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
     Login1 = AvadaKedavra Password = password
     Login2 = AvadaKedavra2 Password2 = password2
   steps:
@@ -125,8 +125,66 @@
     - Выбрать настройки игры Game_Type = with a friend
     - Найти и выбрать второго пользователя в списке оппонентов
     - Нажать 'Create invite'
-    - Во втором подтвердить приглашение, путем нажатия на соответствующую иконку
+    - Во втором окне подтвердить приглашение, путем нажатия на соответствующую иконку
   expected-result: |
     Сообщение о том, что первый пользователь пригласил в игру.    
     
+- summary: |
+    Проверка возможности выиграть партию у другого пользователя
+  requirement: |
+    При вводе верного кода раньше соперника игрок становится победителем в battle
+  prerequisites: |
+    Открыты два окна с приложением на главной странице https://codebattle.hexlet.io/
+    В первом окне авторизован пользователь 1; Во втором окне - пользователь 2
+  test-data: |
+    Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
+    Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
+    Login1 = AvadaKedavra Password = password
+    Login2 = AvadaKedavra2 Password2 = password2
+    Level = * Time control = 3 min Game type = with a bot Task = rect_area
+    Task language = js;
+    const solution = (width, length) => {
+    return width * length;
+    };
+  steps:
+    - В первом окне нажать 'Create a game'
+    - Выбрать настройки игры Game_Type = with a friend
+    - Найти и выбрать второго пользователя в списке оппонентов
+    - Нажать 'Create invite'
+    - Во втором окне подтвердить приглашение, путем нажатия на соответствующую иконку
+    - Нажать 'Accept'
+    - Дописать код соответствующий задаче
+    - Нажать 'check'
+  expected-result: |
+    Игра завершена выигрышем пользователя 2
     
+- summary: |
+    Проверка корректного функционирования чата лобби для авторизованного пользователя
+  requirement: |
+    Авторизованный пользователь должен иметь возможность общаться в чате лобби с другими игроками
+  prerequisites:
+     Открыта страница https://codebattle.hexlet.io/
+     Пользователь авторизирован
+  test-data: |
+    empty
+  steps:
+    - Написать сообщение в текстовое поле чата лобби "Hello from Hexlet!"
+    - Нажать на кнопку "Send"
+  expected-result: |
+    В чате лобби отобразится отправленное сообщение 
+    
+- summary: |
+    Проверка корректного функционирования чата в матче для неавторизованного пользователя
+  requirement: |
+    Пользователь должен иметь возможность общаться в чате матча с соперником
+  prerequisites:
+    Открыта страница с выбранной игрой https://codebattle.hexlet.io/
+  test-data: |
+    empty
+  steps:
+    - Нажать "TRY SIMPLE BATTLE"
+    - Написать сообщение в текстовое поле чата "Hello from Hexlet!"
+    - Нажать на кнопку "Send"
+  expected-result: |
+    В чате матча отобразится отправленное сообщение     
+
