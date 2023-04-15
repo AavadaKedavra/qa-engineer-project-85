@@ -118,8 +118,8 @@
   test-data: |
     Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
     Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
-    Login1 = AvadaKedavra Password = password
-    Login2 = AvadaKedavra2 Password2 = password2
+    Login1 = AvadaKedavra; Password = password
+    Login2 = AvadaKedavra2; Password2 = password2
   steps:
     - В первом окне нажать 'Create a game'
     - Выбрать настройки игры Game_Type = with a friend
@@ -139,8 +139,8 @@
   test-data: |
     Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
     Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
-    Login1 = AvadaKedavra Password = password
-    Login2 = AvadaKedavra2 Password2 = password2
+    Login1 = AvadaKedavra; Password = password
+    Login2 = AvadaKedavra2; Password2 = password2
     Level = * Time control = 3 min Game type = with a bot Task = rect_area
     Task language = js;
     const solution = (width, length) => {
@@ -178,7 +178,7 @@
   requirement: |
     Пользователь должен иметь возможность общаться в чате матча с соперником
   prerequisites:
-    Открыта страница с выбранной игрой https://codebattle.hexlet.io/
+    Открыта страница https://codebattle.hexlet.io/
   test-data: |
     empty
   steps:
@@ -188,3 +188,101 @@
   expected-result: |
     В чате матча отобразится отправленное сообщение     
 
+- summary: |
+    Проверка создания профиля с несуществующей почтой 
+  requirement: |
+    Для регистрации пользователя необходим валидный адрес электнроный почты
+  prerequisites:
+    Открыта страница https://codebattle.hexlet.io/
+  test-data: |
+    email = "несуществующаяпочтадлятеста_date@testmail.ru"
+  steps:
+    - Нажать 'Sing up'
+    - ввести данные в поле Nickname
+    - ввести невалидный email в поле
+    - ввести данные в поля password
+  expected-result: |
+    Регистрация не прошла успешно, т.к. данный email - невалиден, отображается соответствующее сообщение
+    
+- summary: |
+    Проверка регистрации учетной записи с уже использующимся Nickname
+  requirement: |
+    Для регистрации пользователя необходимо указать еще неиспользуемый на сайте Nickname
+  prerequisites:
+    Открыта страница https://codebattle.hexlet.io/
+  test-data: |
+    Nickname = 
+  steps:
+    - Нажать 'Sing up'
+    - ввести данные в поле Nickname
+    - ввести данные в поле email 
+    - ввести данные в поля password
+  expected-result: |
+    Регистрация не прошла успешно, т.к. данный Nickname уже используется, отображается соответствующее сообщение
+
+- summary: |
+    Проверка регистрации учетной записи с уже использующимся email
+  requirement: |
+    Для регистрации пользователя необходимо указать еще не зарегестрированный на сайте email
+  prerequisites:
+    Открыта страница https://codebattle.hexlet.io/
+  test-data: |
+    email = testemail
+  steps:
+    - Нажать 'Sing up'
+    - ввести данные в поле Nickname
+    - ввести данные в поле email 
+    - ввести данные в поля password
+  expected-result: |
+    Регистрация не прошла успешно, т.к. данный email уже используется, отображается соответствующее сообщение
+    
+- summary: |
+    Проверка невозможности влияния на ход игры соперника
+  requirement: |
+    Пользователь не может влиять на ход решение соперника (менять его код и язык программирования)
+  prerequisites: |
+    Идет процесс игры
+  test-data: |
+    empty
+  steps:
+    -Писать код в терминале соперника, изменить код в терминале сопреника, переключить язык его программирования
+  expected-result: | 
+    Не возможно взаимодействовать с терминалом соперника
+   
+- summary: |
+    Успешное создание турнира
+  requirement: |
+    Игрок имеет возможность создать турнир
+  prerequisites: |
+    Пользователь авторизован.
+    Открыт сайт на вкладке tournaments https://codebattle.hexlet.io/#tournaments
+  test-data: |
+    Login1 = AvadaKedavra; Password = password
+    Name = test1; Type = individual; Access_type = token; Level = elementary;
+    Default language = js; Match timeout = 177;
+  steps:
+    - Нажать на гиперссылку 'Tournaments info'
+    - Заполнить форму 'Create a new tournament' в соответствии с тестовыми данными
+    - Указать дату и время турнира
+    - Нажать 'Create'
+  expected-result: |
+    Турнир появился в списке турниров.  
+    
+- summary: |
+    Неуспешное создание турнира c прошедшей датой 
+  requirement: |
+    Сайт не должен дать возможность сгенерировать турнир с прошедшей датой и временем
+  prerequisites: |
+    Пользователь авторизован.
+    Открыт сайт на вкладке tournaments https://codebattle.hexlet.io/#tournaments
+  test-data: |
+    Login1 = AvadaKedavra; Password = password
+    Name = test1; Type = individual; Access_type = token; Level = elementary;
+    Default language = js; Match timeout = 177;
+  steps:
+    - Нажать на гиперссылку 'Tournaments info'
+    - Заполнить форму 'Create a new tournament' в соответствии с тестовыми данными
+    - Указать прошедшую дату и время турнира
+    - Нажать 'Create'
+  expected-result: |
+    Турнир не сгенерирован / нет возможности указать прошедшую дату и время турнира при создании
