@@ -357,3 +357,43 @@
     - Нажать 'Submit'
   expected-result: | 
     Проиошел корректный вход на сайт с восстановленным/новым паролем 
+
+- summary: |
+    Одновременное участие в нескольких играх
+  requirement: |
+    Пользователь может принимать участие одновременно только в одной игре
+  prerequisites:
+    Открыта главная страница https://codebattle.hexlet.io/
+    Пользователь авторизован
+  test-data: |
+    Login = AvadaKedavra
+    Password = password
+  steps:
+    - Нажимать на "Fight" во вкладке "lobby" главной страницы приложения
+    - Нажимать "Codebattle by Hexlet's community"
+    - Нажимаем на "Fight" во вкладке "lobby" главной страницы приложения
+  expected-result: |
+    Отображена ошибка "already_in_a_game"
+    Игра не создана
+    
+- summary: |
+    Создание нескольких турниров с одинаковым названием  
+  requirement: |
+    Все активные/предстоящие турниры должны иметь разное название 
+  prerequisites:
+    Открыта главная страница https://codebattle.hexlet.io/
+    Пользователь авторизован
+  test-data: |
+    Login = AvadaKedavra; Password = password
+    Name tournament 1 = test; Type = individual; Access_type = token; Level = elementary;
+    Default language = js; Match timeout = 177;
+    Name tournament 2 = test;
+  steps:
+    - Нажать на гиперссылку 'Tournaments info'
+    - Заполнить форму 'Create a new tournament' в соответствии с тестовыми данными
+    - Нажать 'Create'
+    - Перейти во влкадку tournaments https://codebattle.hexlet.io/tournaments
+    - Нажать на гиперссылку 'Tournaments info'
+    - Заполнить форму 'Create a new tournament' в соответствии с тестовыми данными
+  expected-result: |
+    Второй турнир не создан, отображается сообщение с информацией 'турнир с текущем названием уже активен'
