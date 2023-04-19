@@ -117,7 +117,7 @@
     В первом окне авторизован пользователь 1; Во втором окне - пользователь 2
   test-data: |
     Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
-    Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
+    Browser = Brave V. 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
     Login1 = AvadaKedavra; Password = password
     Login2 = AvadaKedavra2; Password2 = password2
   steps:
@@ -137,7 +137,7 @@
     В первом окне авторизован пользователь 1; Во втором окне - пользователь 2
   test-data: |
     Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
-    Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
+    Browser = Brave V. 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
     Login1 = AvadaKedavra; Password = password
     Login2 = AvadaKedavra2; Password2 = password2
   steps:
@@ -159,7 +159,7 @@
     В первом окне авторизован пользователь 1; Во втором окне - пользователь 2
   test-data: |
     Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
-    Browser = Brave Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
+    Browser = Brave V. 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
     Login1 = AvadaKedavra; Password = password
     Login2 = AvadaKedavra2; Password2 = password2
     Level = * Time control = 3 min Game type = with a bot Task = rect_area
@@ -188,7 +188,7 @@
     В первом окне авторизован пользователь 1; Во втором окне - пользователь 2
   test-data: |
     Browser = Opera GX LVL 4 (core: 95.0.4635.74) - пользователь 1
-    Browser = Brave Version 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
+    Browser = Brave V. 1.50.119 Chromium: 112.0.5615.121 (Official Build) (64-bit) - пользователь 2
     Login1 = AvadaKedavra; Password = password
     Login2 = AvadaKedavra2; Password2 = password2
     Level = * Time control = 3 min Game type = with a bot Task = rect_area
